@@ -38,12 +38,24 @@
     try { pm.textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date()).toUpperCase(); } catch (e) {}
   }
 
-  // The postcard.
+  // The postcard. With a Formspree endpoint set it is stored + emailed to her;
+  // without one it opens the visitor's mail app pre-filled.
   var form = document.querySelector('[data-postcard]');
   var sent = document.querySelector('[data-sent]');
+  var sentBody = document.querySelector('[data-sent-body]');
+  var note = document.querySelector('[data-note]');
   var courier = document.querySelector('[data-courier]');
   var again = document.querySelector('[data-again]');
   if (form) {
+    var endpoint = (form.getAttribute('data-endpoint') || '').trim();
+    if (endpoint && note) note.textContent = 'Lands straight in my inbox.';
+
+    function runOff() {
+      form.classList.add('is-sending');
+      if (courier) { courier.classList.remove('is-running'); void courier.offsetWidth; courier.classList.add('is-running'); }
+      setTimeout(function () { if (sent) sent.hidden = false; }, 900);
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) {
@@ -53,17 +65,37 @@
         return;
       }
       form.classList.remove('is-invalid');
+      var name = form.elements.name.value.trim();
       var email = form.elements.email.value.trim();
       var topic = (form.querySelector('input[name="topic"]:checked') || {}).value || 'a hello';
       var msg = form.elements.message.value.trim();
-      var subject = 'Postcard from ' + email + ' — about ' + topic;
-      var body = 'Hey Priyanshi,\n\n' + msg + '\n\n— ' + email + '\n\n(sent from the postcard on your portfolio)';
-      var href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      var subject = 'Postcard from ' + name + ' — about ' + topic;
+      var fallback = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent('Hey Priyanshi,\n\n' + msg + '\n\n— ' + name + '\n' + email + '\n\n(sent from the postcard on your portfolio)');
 
-      form.classList.add('is-sending');
-      if (courier) { courier.classList.remove('is-running'); void courier.offsetWidth; courier.classList.add('is-running'); }
-      setTimeout(function () { window.location.href = href; }, 500);
-      setTimeout(function () { if (sent) sent.hidden = false; }, 900);
+      if (!endpoint) {
+        runOff();
+        setTimeout(function () { window.location.href = fallback; }, 500);
+        return;
+      }
+
+      var btn = form.querySelector('.send');
+      btn.disabled = true; btn.textContent = 'Sending…';
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, topic: topic, message: msg, _subject: subject, _replyto: email })
+      }).then(function (r) {
+        if (!r.ok) throw new Error('bad response');
+        if (sentBody) sentBody.textContent = 'Your postcard is in my inbox. I’ll write back to ' + email + ' soon.';
+        runOff();
+      }).catch(function () {
+        // Service down or blocked: fall back to the mail app so nothing is lost.
+        runOff();
+        setTimeout(function () { window.location.href = fallback; }, 500);
+      }).then(function () {
+        btn.disabled = false; btn.innerHTML = 'Send it off <svg class="icon icon--chevron"><use href="#i-chevron"/></svg>';
+      });
     });
     if (again) again.addEventListener('click', function () {
       sent.hidden = true;
