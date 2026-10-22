@@ -83,9 +83,7 @@
 
   function render() {
     tabs.forEach(function (t, i) { t.classList.toggle('is-current', isOpen && flipped === i); });
-    if (btnPrev) btnPrev.disabled = flipped === 0;
     if (btnNext) btnNext.disabled = flipped === n;
-    if (count) count.textContent = flipped === n ? 'the end' : ('spread ' + (flipped + 1) + ' of ' + (n + 1));
   }
 
   function openBook() {
@@ -134,8 +132,7 @@
 
   cover.querySelector('.cover__outside').addEventListener('click', openBook);
   if (btnOpen) btnOpen.addEventListener('click', openBook);
-  if (btnClose) btnClose.addEventListener('click', closeBook);
-  if (btnPrev) btnPrev.addEventListener('click', function () { flipTo(flipped - 1); });
+  if (btnPrev) btnPrev.addEventListener('click', function () { if (flipped === 0) closeBook(); else flipTo(flipped - 1); });
   if (btnNext) btnNext.addEventListener('click', function () { flipTo(flipped + 1); });
   tabs.forEach(function (t) { t.addEventListener('click', function () { flipTo(parseInt(t.getAttribute('data-goto'), 10)); }); });
 
@@ -150,9 +147,13 @@
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight') flipTo(flipped + 1);
-    if (e.key === 'ArrowLeft') flipTo(flipped - 1);
+    if (e.key === 'ArrowLeft') { if (flipped === 0) closeBook(); else flipTo(flipped - 1); }
     if (e.key === 'Enter' && !isOpen && document.activeElement === document.body) openBook();
   });
+
+  // On phones the pages are stacked; a Close link isn't needed, scrolling up to the cover is enough.
+  // Keep Escape as a quick close everywhere.
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen) closeBook(); });
 
   // Swipe on touch (desktop-sized tablets).
   var sx = null;
