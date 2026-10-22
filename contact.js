@@ -58,7 +58,7 @@
       var topic = (form.querySelector('input[name="topic"]:checked') || {}).value || 'a hello';
       var msg = form.elements.message.value.trim();
       var subject = 'Postcard from ' + name + ' — about ' + topic;
-      var body = 'Dear Priyanshi,\n\n' + msg + '\n\n— ' + name + '\n' + email + '\n\n(sent from the postcard on your portfolio)';
+      var body = 'Hey Priyanshi,\n\n' + msg + '\n\n— ' + name + '\n' + email + '\n\n(sent from the postcard on your portfolio)';
       var href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
       form.classList.add('is-sending');
@@ -75,20 +75,6 @@
     });
   }
 
-  // Copy email pin.
-  var copy = document.querySelector('[data-copy-email]');
-  var copyLabel = document.querySelector('[data-copy-label]');
-  if (copy) {
-    copy.addEventListener('click', function () {
-      var done = function () {
-        copy.classList.add('is-copied');
-        copyLabel.textContent = 'copied! ' + EMAIL;
-        setTimeout(function () { copy.classList.remove('is-copied'); copyLabel.textContent = 'tap to copy'; }, 2600);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(EMAIL).then(done, function () { window.location.href = 'mailto:' + EMAIL; });
-      else window.location.href = 'mailto:' + EMAIL;
-    });
-  }
   // Footer panda: pupils follow the cursor.
   var panda = document.querySelector('[data-panda]');
   if (panda && window.matchMedia('(pointer: fine)').matches) {
