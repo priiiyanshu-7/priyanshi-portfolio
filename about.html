@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=202610230209">
-  <link rel="stylesheet" href="about.css?v=202610230210">
+  <link rel="stylesheet" href="about.css?v=202610230211">
 </head>
 <body class="about-body">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -181,15 +181,52 @@
 
     </section>
 
-    <footer class="about-footer">
+    <!-- Contact / footer -->
+    <footer class="section contact" id="contact" data-contact>
+      <div class="contact__top">
+        <h2 class="contact__headline">Got an idea?<br><em>Let's talk.</em></h2>
+        <!-- Fill in the real destinations: LinkedIn profile, email address, Behance profile, and resume PDF path. -->
+        <div class="contact__links">
+          <a class="contact__card contact__card--linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn <svg class="icon icon--arrow"><use href="#i-arrow-ne"/></svg></a>
+          <a class="contact__card contact__card--email" href="mailto:hello@example.com">Email <svg class="icon icon--arrow"><use href="#i-arrow-ne"/></svg></a>
+          <a class="contact__card contact__card--behance" href="https://www.behance.net/" target="_blank" rel="noopener">Behance <svg class="icon icon--arrow"><use href="#i-arrow-ne"/></svg></a>
+          <a class="contact__card contact__card--resume" href="assets/resume.pdf" download>Resume <svg class="icon icon--arrow"><use href="#i-arrow-down"/></svg></a>
+        </div>
+        <img class="contact__butterfly drift" style="--flip:-1;--d:6.5s" src="assets/butterfly-1.png" alt="" aria-hidden="true">
+      </div>
+
+      <div class="garden" aria-hidden="true">
+        <div class="garden__right">
+          <div class="garden__flower garden__flower--a flip"><img src="assets/flower-a.png" alt=""></div>
+          <div class="garden__flower garden__flower--b flip"><img src="assets/flower-b.png" alt=""></div>
+          <div class="garden__tilt"><div class="garden__tilt-box"><div class="garden__flower garden__flower--c"><img src="assets/flower-c.png" alt=""></div></div></div>
+        </div>
+        <div class="garden__rule"></div>
+        <div class="garden__panda" data-panda>
+          <div class="garden__panda-body">
+            <img src="assets/panda-footer.png" alt="">
+            <span class="panda-eye panda-eye--l"><span class="panda-pupil"></span></span>
+            <span class="panda-eye panda-eye--r"><span class="panda-pupil"></span></span>
+          </div>
+        </div>
+        <div class="garden__left">
+          <div class="garden__flower garden__flower--d"><img src="assets/flower-d.png" alt=""></div>
+          <div class="garden__flower garden__flower--b"><img src="assets/flower-b.png" alt=""></div>
+          <div class="garden__flower garden__flower--a"><img src="assets/flower-a.png" alt=""></div>
+        </div>
+      </div>
+
       <div class="footer">
         <p class="footer__copy">©&nbsp; 2026&nbsp; Priyanshi&nbsp; Chikhale</p>
         <p class="footer__tag">UX designer crafting clean &amp; modern designs</p>
         <button class="footer__top" type="button" data-back-to-top>BACK TO TOP <svg class="icon icon--up"><use href="#i-chevron-up"/></svg></button>
       </div>
+
+      <img class="contact__butterfly-2 drift" style="--flip:1;--d:8s;--delay:-3s" src="assets/butterfly-2.png" alt="" aria-hidden="true">
     </footer>
+
   </div>
 
-  <script src="about.js?v=202610230209"></script>
+  <script src="about.js?v=202610230211"></script>
 </body>
 </html>

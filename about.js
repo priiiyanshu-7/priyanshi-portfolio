@@ -25,6 +25,35 @@
   var top = document.querySelector('[data-back-to-top]');
   if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
+  // Footer panda: pupils follow the cursor.
+  var panda = document.querySelector('[data-panda]');
+  if (panda && window.matchMedia('(pointer: fine)').matches) {
+    var pupils = Array.prototype.slice.call(panda.querySelectorAll('.panda-pupil'));
+    var MAX_SHIFT = 3;   // px a pupil may travel from centre
+    var REACH = 160;     // px from the eye at which the pupil is fully deflected
+    var pointerX = -1, pointerY = -1, frame = null;
+
+    function lookAtPointer() {
+      frame = null;
+      if (pointerX < 0) return;
+      pupils.forEach(function (pupil) {
+        var r = pupil.parentNode.getBoundingClientRect();
+        var dx = pointerX - (r.left + r.width / 2);
+        var dy = pointerY - (r.top + r.height / 2);
+        var dist = Math.hypot(dx, dy) || 1;
+        var k = Math.min(1, dist / REACH) * MAX_SHIFT;
+        pupil.style.setProperty('--px', (dx / dist * k).toFixed(2) + 'px');
+        pupil.style.setProperty('--py', (dy / dist * k).toFixed(2) + 'px');
+      });
+    }
+    function queue() { if (!frame) frame = requestAnimationFrame(lookAtPointer); }
+
+    document.addEventListener('mousemove', function (e) {
+      pointerX = e.clientX; pointerY = e.clientY; queue();
+    }, { passive: true });
+    window.addEventListener('scroll', queue, { passive: true });
+  }
+
   // ---- The book ----
   var library = document.querySelector('.library');
   var stage = document.querySelector('[data-book]');
