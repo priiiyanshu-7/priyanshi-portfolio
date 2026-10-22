@@ -120,6 +120,11 @@
     });
   }
 
+  // Phone cover cards: the NDA one opens the popup.
+  document.querySelectorAll('.mcard--nda').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); openNda(); });
+  });
+
   // Shelf panda: same little guy as on the home page.
   var shelfPanda = document.querySelector('[data-shelf-panda]');
   if (shelfPanda) {

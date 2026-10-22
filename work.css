@@ -50,23 +50,29 @@
 .work-card { position: relative; flex-shrink: 0; width: 359px; padding-top: 59px; z-index: 3; }
 .work-card .featured { position: relative; left: auto; top: auto; }
 
-/* ---- phones: card first, then both shelves ---- */
+.mgrid { display: none; }
+
+/* ---- phones: a two-column grid of cover cards ---- */
 @media (max-width: 899px) {
   .work-intro { padding: 16px 20px 0; }
   .work-intro__title { font-size: clamp(38px, 10vw, 56px); }
   .work-intro__sub { font-size: 18px; }
-  .library-work { flex-direction: column; padding: 24px 20px 0; gap: 0; }
-  .work-card { position: relative; top: auto; width: 100%; max-width: 359px; margin: 0 auto; padding-top: 0; order: 1; }
-  .shelf-wall { --books-zoom: 0.62; width: 100%; padding-top: 0; order: 2; margin-top: 32px; }
-  .shelf-line, .wlamp, .wlamp-light, .wshelf__planks, .wshelf .shelf__panda { display: none; }
-  .wshelf { height: auto; margin: 0; display: block; }
-  .wshelf__books {
+  .library-work { padding: 20px 20px 0; display: block; }
+  .shelf-wall, .work-card { display: none; }
+  .mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mcard {
     position: relative; left: auto; top: auto; width: auto; height: auto;
-    display: grid; grid-template-columns: repeat(3, 71px); justify-content: center;
-    gap: 28px 28px; zoom: 1;
+    display: block; padding: 16px 14px 14px; box-shadow: 0 10px 26px rgba(60, 30, 30, .16);
+    transition: transform .25s cubic-bezier(.34, 1.56, .64, 1);
   }
-  .wshelf__books .book { position: static; }
-  .wshelf__books .book.is-raised { transform: translateY(-10px); }
+  .mcard:active { transform: scale(.97); }
+  .mcard .featured__content { position: static; width: auto; display: flex; flex-direction: column; gap: 10px; }
+  .mcard .featured__tags { font-size: 10px; gap: 5px; white-space: normal; }
+  .mcard .featured__cover { display: block; height: auto; aspect-ratio: 4 / 3; }
+  .mcard .featured__title { display: block; font-size: 19px; line-height: 1.15; }
+  .mcard .featured__desc { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; width: auto; font-size: 13px; line-height: 1.35; }
+  .mcard .featured__meta { display: flex; font-size: 10px; margin-top: 4px; }
+  .mcard .featured__link { gap: 3px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .wlamp, .wlamp-light { transition: none; }
