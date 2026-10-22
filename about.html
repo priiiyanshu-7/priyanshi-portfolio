@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=202610230209">
-  <link rel="stylesheet" href="about.css?v=202610230215">
+  <link rel="stylesheet" href="about.css?v=202610230217">
 </head>
 <body class="about-body">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -160,6 +160,9 @@
           </div>
         </div>
 
+        <button type="button" class="corner corner--prev" data-prev aria-label="Previous page"><span class="corner__fold"></span><span class="corner__label"><svg class="icon icon--chevron icon--flip"><use href="#i-chevron"/></svg> back</span></button>
+        <button type="button" class="corner corner--next" data-next aria-label="Next page"><span class="corner__fold"></span><span class="corner__label">next <svg class="icon icon--chevron"><use href="#i-chevron"/></svg></span></button>
+
         <div class="tabs" aria-label="Chapters">
           <button type="button" class="tab" data-goto="0" style="--tab:#a85d68">Hello</button>
           <button type="button" class="tab" data-goto="1" style="--tab:#d9a052">Joys</button>
@@ -172,9 +175,7 @@
       <div class="library__panda" aria-hidden="true"><img src="assets/panda-shelf.png" alt=""></div>
       <div class="controls" data-controls>
         <button type="button" class="pill ctrl ctrl--open" data-open>Open the book <svg class="icon icon--chevron"><use href="#i-chevron"/></svg></button>
-        <button type="button" class="pill ctrl ctrl--prev" data-prev aria-label="Previous page"><svg class="icon icon--chevron icon--flip"><use href="#i-chevron"/></svg> Back</button>
         <span class="ctrl__count" data-count aria-live="polite"></span>
-        <button type="button" class="pill ctrl ctrl--next" data-next>Next page <svg class="icon icon--chevron"><use href="#i-chevron"/></svg></button>
         <button type="button" class="pill ctrl ctrl--close" data-close>Close the book</button>
       </div>
 

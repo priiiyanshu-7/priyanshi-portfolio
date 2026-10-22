@@ -124,8 +124,8 @@
 .chapter__kicker { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--peach); font-weight: 500; margin-bottom: 10px; }
 .chapter__title { font-size: 31px; font-weight: 500; line-height: 1.1; margin-bottom: 16px; }
 .chapter__body { font-size: 15.5px; line-height: 1.5; margin-bottom: 12px; }
-.chapter__foot { position: absolute; bottom: 20px; right: 28px; font-size: 12px; color: #8d6552; }
-.chapter__foot--left { right: auto; left: 28px; }
+.chapter__foot { position: absolute; top: 16px; right: 24px; font-size: 12px; color: #8d6552; }
+.chapter__foot--left { right: auto; left: 24px; }
 
 .stickers { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .stickers li { padding: 7px 12px; border-radius: 38px; background: var(--peach-10); border: 1px solid rgba(244,146,113,.2); font-size: 14px; white-space: nowrap; }
@@ -190,12 +190,56 @@
 }
 .tab:hover, .tab.is-current { transform: translateX(5px); }
 
+/* page-corner Back / Next */
+.corner {
+  position: absolute; bottom: 0;
+  width: 96px; height: 96px;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  z-index: 70;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease .9s;
+}
+.stage.is-open .corner { opacity: 1; pointer-events: auto; }
+.corner[disabled] { opacity: 0 !important; pointer-events: none; }
+.corner--next { right: 0; }
+.corner--prev { left: calc(-1 * var(--pg-w)); }
+.corner__fold {
+  position: absolute; bottom: 0; width: 0; height: 0;
+  border-style: solid;
+  transition: border-width .25s cubic-bezier(.34, 1.56, .64, 1);
+  filter: drop-shadow(-2px -2px 3px rgba(60,30,30,.14));
+}
+.corner--next .corner__fold {
+  right: 0;
+  border-width: 0 0 34px 34px;
+  border-color: transparent transparent var(--bg) transparent;
+  background: linear-gradient(225deg, transparent 50%, #f1e3d6 50%);
+}
+.corner--prev .corner__fold {
+  left: 0;
+  border-width: 0 34px 34px 0;
+  border-color: transparent transparent var(--bg) transparent;
+  background: linear-gradient(135deg, transparent 50%, #f1e3d6 50%);
+  filter: drop-shadow(2px -2px 3px rgba(60,30,30,.14));
+}
+.corner:hover .corner__fold { border-width: 0 0 48px 48px; }
+.corner--prev:hover .corner__fold { border-width: 0 48px 48px 0; }
+.corner__label {
+  position: absolute; bottom: 14px;
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--serif); font-size: 13px; font-style: italic; color: var(--rust-dark);
+  opacity: .75; transition: opacity .2s ease;
+}
+.corner--next .corner__label { right: 44px; }
+.corner--prev .corner__label { left: 44px; }
+.corner:hover .corner__label { opacity: 1; }
+
 /* controls */
 .controls { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 36px 0 24px; min-height: 44px; }
 .ctrl { cursor: pointer; }
-.ctrl--prev, .ctrl--next, .ctrl--close, .ctrl__count { display: none; }
+.ctrl--close, .ctrl__count { display: none; }
 .library.is-open .ctrl--open { display: none; }
-.library.is-open .ctrl--prev, .library.is-open .ctrl--next, .library.is-open .ctrl--close, .library.is-open .ctrl__count { display: inline-flex; }
+.library.is-open .ctrl--close, .library.is-open .ctrl__count { display: inline-flex; }
 .ctrl[disabled] { opacity: .35; pointer-events: none; }
 .ctrl__count { font-size: 14px; color: #8d6552; min-width: 80px; justify-content: center; }
 .icon--flip { transform: scaleX(-1); }
@@ -231,13 +275,13 @@
   .face--photo { min-height: 420px; }
   .tabs { display: none; }
   .controls { flex-wrap: wrap; margin: 24px 0 24px; }
-  .ctrl--prev, .ctrl--next, .ctrl__count { display: none !important; }
+  .corner, .ctrl__count { display: none !important; }
   .about-footer { padding: 24px 20px 32px; }
   .footer { flex-direction: column; align-items: center; gap: 12px; text-align: center; }
   .footer__tag { position: static; white-space: normal; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .stage, .sheet, .cover, .tabs { transition: none; }
+  .stage, .sheet, .cover, .tabs, .corner, .corner__fold { transition: none; }
   .library__panda img, .cover__hint { animation: none; }
   .cover__hint { opacity: .9; }
 }
