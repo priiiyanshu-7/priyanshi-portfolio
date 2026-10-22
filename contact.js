@@ -53,11 +53,11 @@
         return;
       }
       form.classList.remove('is-invalid');
-      var name = form.elements.name.value.trim();
+      var email = form.elements.email.value.trim();
       var topic = (form.querySelector('input[name="topic"]:checked') || {}).value || 'a hello';
       var msg = form.elements.message.value.trim();
-      var subject = 'Postcard from ' + name + ' — about ' + topic;
-      var body = 'Hey Priyanshi,\n\n' + msg + '\n\n— ' + name + '\n\n(sent from the postcard on your portfolio)';
+      var subject = 'Postcard from ' + email + ' — about ' + topic;
+      var body = 'Hey Priyanshi,\n\n' + msg + '\n\n— ' + email + '\n\n(sent from the postcard on your portfolio)';
       var href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
       form.classList.add('is-sending');
