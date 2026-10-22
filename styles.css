@@ -102,7 +102,7 @@ h1, h2, h3 { font-weight: 500; }
   display: flex;
   align-items: flex-start;
   gap: 4px;
-  width: 423px;
+  width: 520px;
   padding: 4px;
   border: 1px solid var(--peach-36);
   border-radius: 38px;
