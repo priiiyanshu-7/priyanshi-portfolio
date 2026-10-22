@@ -1179,17 +1179,17 @@ html.is-loading { overflow: hidden; }
   .section__title { font-size: clamp(30px, 8vw, 40px); white-space: normal; }
 
   /* Bookshelf: books on a plank, featured card below */
-  .projects { padding-bottom: 260px; } /* scroll "hold": the pinned shelf stays while this space scrolls by */
+  /* The page settles with the shelf at the bottom of the screen when you scroll near it */
+  html { scroll-snap-type: y proximity; }
   .shelf {
     --books-zoom: min(1, calc((var(--vw, 400) - 120) / 491));
-    position: sticky;
-    bottom: 0;
+    scroll-snap-align: end;
+    scroll-margin-bottom: 0;
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    background: var(--bg);
   }
   .shelf__line, .shelf__lamp, .shelf__lamp-light { display: none; }
   .shelf__books {
@@ -1197,7 +1197,7 @@ html.is-loading { overflow: hidden; }
     left: auto; top: auto;
     width: 491px;
     height: 354px;
-    margin-top: calc(56px / var(--books-zoom)); /* 56 real px, since the stage is zoomed */
+    margin-top: calc(28px / var(--books-zoom)); /* 28 real px, since the stage is zoomed */
     order: 2;
     zoom: var(--books-zoom);
   }
