@@ -265,7 +265,6 @@
   var journeyTrigger = window.innerWidth >= 900 && journeyGround ? journeyGround : journeyEl;
   revealOnScroll(journeyEl, journeyTrigger === journeyEl ? 0.15 : 0, journeyTrigger);
   revealOnScroll(document.querySelector('[data-achievements]'), 0.35); // little achievements
-  revealOnScroll(document.querySelector('[data-about]'), 0.3);          // about
 
   // Hero portrait: a greeting bubble pops up on hover (tap toggles it on touch).
   var heroArt = document.querySelector('[data-hero-art]');

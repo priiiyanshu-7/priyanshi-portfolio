@@ -11,15 +11,22 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Page loader: a tulip grows from a seed, then the curtain lifts. Shown once per session. -->
+  <!-- Page loader: a design-tool selection box gets dragged around the logo. Shown once per session. -->
   <div class="loader" data-loader aria-hidden="true">
     <div class="loader__stage">
-      <div class="loader__plant loader__plant--seed"><img src="assets/plants-sprite.png" alt=""></div>
-      <div class="loader__plant loader__plant--sprout"><img src="assets/plants-sprite.png" alt=""></div>
-      <div class="loader__plant loader__plant--plant"><img src="assets/plants-sprite.png" alt=""></div>
+      <div class="loader__selection">
+        <img class="loader__logo" src="assets/logo.svg" alt="">
+        <span class="loader__handle loader__handle--tl"></span>
+        <span class="loader__handle loader__handle--tr"></span>
+        <span class="loader__handle loader__handle--bl"></span>
+        <span class="loader__handle loader__handle--br"></span>
+        <span class="loader__size">157 × 28</span>
+      </div>
+      <svg class="loader__cursor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 3l14 9-6.2 1.3L16 20l-2.6 1.2-3.2-6.6L5.6 18z" fill="#fff" stroke="#a52e07" stroke-width="1.2" stroke-linejoin="round"/>
+      </svg>
     </div>
-    <div class="loader__ground"></div>
-    <p class="loader__text">growing something nice…</p>
+    <p class="loader__text">designing something nice…</p>
   </div>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -250,34 +257,8 @@
       </div>
     </section>
 
-    <!-- About -->
-    <section class="section about" id="about" data-about>
-      <div class="about__card">
-        <div class="about__photo-wrap">
-          <div class="about__photo">
-            <div class="about__photo-frame"><img src="assets/hero-portrait.png" alt="Priyanshi smiling, chin resting on her hand"></div>
-            <p class="about__caption">me, probably thinking about chai ☕</p>
-          </div>
-          <img class="about__tulip" src="assets/flower-c.png" alt="" aria-hidden="true">
-        </div>
-        <div class="about__text">
-          <p class="about__eyebrow">A little about me</p>
-          <h2 class="about__title">Hi, I’m Priyanshi 🌷</h2>
-          <p class="about__body">I like my problems messy and my interfaces calm. I started out designing physical things (there’s a patent for a hand‑embroidery tool with my name on it), wandered into research on farms and cold chains, and now I spend my days turning complicated workflows into things people actually enjoy using.</p>
-          <p class="about__body">Off‑screen you’ll find me with a cup of chai, a bunch of tulips, and far too many panda stickers.</p>
-          <ul class="about__facts">
-            <li class="about__fact" style="--i:0">📍 Bangalore</li>
-            <li class="about__fact" style="--i:1">☕ Chai over coffee</li>
-            <li class="about__fact" style="--i:2">🧵 Patent holder</li>
-            <li class="about__fact" style="--i:3">🌷 Tulip person</li>
-            <li class="about__fact" style="--i:4">🐼 Panda energy</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
     <!-- Chapters so far -->
-    <section class="section journey" id="chapters" data-journey>
+    <section class="section journey" id="about" data-journey>
       <div class="section__head">
         <h2 class="section__title">Chapters so far</h2>
       </div>
