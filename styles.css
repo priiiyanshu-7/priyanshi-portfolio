@@ -1235,8 +1235,8 @@ html.is-loading { overflow: hidden; }
   /* Achievements: stacked and centred */
   .achievements { padding: 64px 20px; gap: 40px; }
   .achievements__grid { flex-direction: column; gap: 40px; }
-  .achievement { flex-direction: column; text-align: center; gap: 12px; }
-  .achievement__text { align-items: center; width: 100%; flex: none; }
+  .achievement { flex-direction: column; align-items: center; text-align: left; gap: 12px; }
+  .achievement__text { align-items: flex-start; width: 100%; flex: none; }
   .achievement__title { font-size: 21px; }
   .achievement__art { transform: translateY(24px); }
   .achievement:nth-child(2) .achievement__art { transform: translateY(24px); }
