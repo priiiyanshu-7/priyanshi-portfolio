@@ -43,12 +43,10 @@
   var form = document.querySelector('[data-postcard]');
   var sent = document.querySelector('[data-sent]');
   var sentBody = document.querySelector('[data-sent-body]');
-  var note = document.querySelector('[data-note]');
   var courier = document.querySelector('[data-courier]');
   var again = document.querySelector('[data-again]');
   if (form) {
     var endpoint = (form.getAttribute('data-endpoint') || '').trim();
-    if (endpoint && note) note.textContent = 'Lands straight in my inbox.';
 
     function runOff() {
       form.classList.add('is-sending');
