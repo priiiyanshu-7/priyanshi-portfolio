@@ -1,0 +1,20 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="84" height="150" viewBox="0 0 84 150" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Group 1597883296">
+<g id="Group 1597883298">
+<path id="Vector 33" d="M42.5 4.37114e-08L42.5 95" stroke-width="2" stroke="#382B27"/>
+<g id="Group 1597883297">
+<g id="Ellipse 79">
+<use xlink:href="#stroke0_0_21" fill="#F5E8C3"/>
+<mask id="stroke1_0_21" fill="white">
+<use xlink:href="#stroke0_0_21"/>
+</mask>
+<path d="M82.5 110C82.5 99.3913 78.2857 89.2172 70.7843 81.7157C63.2828 74.2143 53.1087 70 42.5 70C31.8913 70 21.7172 74.2143 14.2157 81.7157C6.71428 89.2172 2.5 99.3913 2.5 110L42.5 110H82.5Z" stroke-width="2" stroke="#382B27" mask="url(#stroke1_0_21)"/>
+</g>
+</g>
+</g>
+<path id="Vector 34" d="M0.5 109.5H83.5" stroke-linecap="round" stroke="black"/>
+</g>
+<defs>
+<path id="stroke0_0_21" d="M82.5 110C82.5 99.3913 78.2857 89.2172 70.7843 81.7157C63.2828 74.2143 53.1087 70 42.5 70C31.8913 70 21.7172 74.2143 14.2157 81.7157C6.71428 89.2172 2.5 99.3913 2.5 110L42.5 110H82.5Z"/>
+</defs>
+</svg>
