@@ -37,7 +37,8 @@
   window.addEventListener('resize', fitViewport);
 
   // Highlight the nav link for the section currently in view.
-  var links = Array.prototype.slice.call(document.querySelectorAll('[data-nav]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('[data-nav]'))
+    .filter(function (a) { return a.getAttribute('href').charAt(0) === '#'; });
   var sections = links
     .map(function (a) { return document.querySelector(a.getAttribute('href')); })
     .filter(Boolean);

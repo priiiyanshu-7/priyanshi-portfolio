@@ -1252,7 +1252,7 @@ html.is-loading { overflow: hidden; }
   .contact__butterfly, .contact__butterfly-2 { display: none; }
   .garden { height: 150px; }
   /* Panda in the middle, one tulip either side */
-  .garden__left, .garden__right { top: auto; bottom: 0; zoom: 0.62; }
+  .garden__left, .garden__right { top: auto; bottom: -14px; zoom: 0.62; } /* stems meet the ground line */
   .garden__left { left: 8px; }
   .garden__right { left: auto; right: 8px; }
   .garden__left > :nth-child(n+2), .garden__right > :nth-child(n+2) { display: none; }
