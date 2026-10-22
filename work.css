@@ -62,8 +62,8 @@
   .wshelf { height: auto; margin: 0; display: block; }
   .wshelf__books {
     position: relative; left: auto; top: auto; width: auto; height: auto;
-    display: grid; grid-template-columns: repeat(auto-fill, 71px); justify-content: center;
-    gap: 22px 14px; zoom: var(--books-zoom);
+    display: grid; grid-template-columns: repeat(3, 71px); justify-content: center;
+    gap: 28px 28px; zoom: 1;
   }
   .wshelf__books .book { position: static; }
   .wshelf__books .book.is-raised { transform: translateY(-10px); }
