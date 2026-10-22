@@ -24,7 +24,7 @@
   --lamp-y: 0px;
   position: relative;
   flex: 1 0 0; min-width: 1px;
-  padding-top: 230px;           /* room for the lamp above the first shelf */
+  padding-top: 200px;           /* room for the lamp above the shelf */
 }
 .shelf-line { position: absolute; left: calc(50% - 50vw - 100px + 0px); top: 0; width: 100vw; height: 1px; background: #000; }
 .library-work { --wall-left: calc(50vw - 620px); }
@@ -40,14 +40,14 @@
 
 .wshelf { position: relative; height: 354px; margin-bottom: 110px; }
 .wshelf:last-child { margin-bottom: 0; }
-.wshelf__books { position: absolute; left: 0; top: 0; width: 491px; height: 354px; }
+.wshelf__books { position: absolute; left: 0; top: 0; width: 756px; height: 354px; }
 .wshelf__planks { position: absolute; left: calc(-1 * var(--wall-left, 100px)); bottom: -25px; width: 100vw; transform: none; }
 .shelf-line { left: calc(-1 * var(--wall-left, 100px)); width: 100vw; }
-.wshelf .shelf__panda { left: auto; right: 40px; top: auto; bottom: 0; z-index: 3; }
+.wshelf .shelf__panda { left: 770px; right: auto; top: auto; bottom: 0; z-index: 3; }
 .book--1, .book--2, .book--3, .book--4, .book--5, .book--6 { --i: initial; }
 
 /* ---- featured card, sticky beside the shelves ---- */
-.work-card { position: sticky; top: 40px; flex-shrink: 0; width: 359px; padding-top: 170px; z-index: 3; }
+.work-card { position: relative; flex-shrink: 0; width: 359px; padding-top: 59px; z-index: 3; }
 .work-card .featured { position: relative; left: auto; top: auto; }
 
 /* ---- phones: card first, then both shelves ---- */
@@ -57,12 +57,15 @@
   .work-intro__sub { font-size: 18px; }
   .library-work { flex-direction: column; padding: 24px 20px 0; gap: 0; }
   .work-card { position: relative; top: auto; width: 100%; max-width: 359px; margin: 0 auto; padding-top: 0; order: 1; }
-  .shelf-wall { --books-zoom: min(1, calc((var(--vw, 400) - 120) / 491)); width: 100%; padding-top: 0; order: 2; margin-top: 32px; }
+  .shelf-wall { --books-zoom: 0.62; width: 100%; padding-top: 0; order: 2; margin-top: 32px; }
   .shelf-line, .wlamp, .wlamp-light { display: none; }
   .wshelf { height: auto; margin-bottom: 56px; display: flex; flex-direction: column; }
-  .wshelf__books { position: relative; left: auto; top: auto; zoom: var(--books-zoom); }
+  .wshelf__books { position: relative; left: auto; top: auto; width: 403px; max-width: 100%; margin: 0 auto; height: auto; display: flex; flex-wrap: wrap; gap: 24px 12px; zoom: var(--books-zoom); padding-bottom: 0; }
+  .wshelf { align-items: center; }
+  .wshelf__books .book { position: static; }
+  .wshelf__books .book.is-raised { transform: translateY(-12px); }
   .wshelf__planks { position: relative; left: auto; bottom: auto; width: calc(100% + 40px); margin-left: -20px; transform: none; }
-  .wshelf .shelf__panda { right: 0; bottom: 25px; width: 60px; height: 42px; z-index: 3; }
+  .wshelf .shelf__panda { left: auto; right: 0; bottom: 25px; width: 60px; height: 42px; z-index: 3; }
 }
 @media (prefers-reduced-motion: reduce) {
   .wlamp, .wlamp-light { transition: none; }
