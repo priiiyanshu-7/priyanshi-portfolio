@@ -1236,7 +1236,8 @@ html.is-loading { overflow: hidden; }
   .achievements { padding: 64px 20px; gap: 40px; }
   .achievements__grid { flex-direction: column; gap: 40px; }
   .achievement { flex-direction: column; text-align: center; gap: 12px; }
-  .achievement__text { align-items: center; }
+  .achievement__text { align-items: center; width: 100%; flex: none; }
+  .achievement__title { font-size: 21px; }
   .achievement__art { transform: translateY(24px); }
   .achievement:nth-child(2) .achievement__art { transform: translateY(24px); }
   .achievements__rule { left: 20px; width: calc(100% - 40px); }
