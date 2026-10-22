@@ -135,7 +135,14 @@
     if (d.title) fTitle.textContent = d.title;
     if (d.desc) fDesc.textContent = d.desc;
     if (d.year) fYear.textContent = d.year;
-    if (d.link) fLink.href = d.link;
+    if (d.link) {
+      fLink.href = d.link;
+      var isMail = d.link.indexOf('mailto:') === 0;
+      if (isMail) { fLink.removeAttribute('target'); fLink.removeAttribute('rel'); }
+      else { fLink.setAttribute('target', '_blank'); fLink.setAttribute('rel', 'noopener'); }
+      var lbl = fLink.querySelector('[data-featured-link-label]');
+      if (lbl) lbl.textContent = d.linkLabel || 'Behance';
+    }
     if (d.cover && fCover) { fCover.src = d.cover; fCover.alt = (d.title || 'Project') + ' cover'; }
   }
 
@@ -162,8 +169,8 @@
       b.addEventListener('focusin', function () { clearTimeout(leaveTimer); select(b); });
       // A tap/click picks the book. Until a book has a real project link, don't follow the '#' placeholder.
       b.addEventListener('click', function (e) {
-        var href = b.querySelector('a') && b.querySelector('a').getAttribute('href');
-        if (!href || href.charAt(0) === '#') e.preventDefault();
+        // Phones: first tap picks the book, a second tap opens it on the Work page.
+        if (window.innerWidth < 900 && b !== current) e.preventDefault();
         clearTimeout(leaveTimer);
         select(b);
       });
@@ -265,9 +272,8 @@
   // Chapters: on desktop, wait until the ground line (where the plants grow) is
   // on screen, so the growth is actually seen; on mobile the section itself is enough.
   var journeyEl = document.querySelector('[data-journey]');
-  var journeyGround = journeyEl && journeyEl.querySelector('.timeline__plank');
-  var journeyTrigger = window.innerWidth >= 900 && journeyGround ? journeyGround : journeyEl;
-  revealOnScroll(journeyEl, journeyTrigger === journeyEl ? 0.15 : 0, journeyTrigger);
+  var journeyCards = journeyEl && journeyEl.querySelector('.timeline__cards');
+  revealOnScroll(journeyEl, 0.25, journeyCards || journeyEl); // once a quarter of the cards are on screen
   revealOnScroll(document.querySelector('[data-achievements]'), 0.35); // little achievements
 
   // Hero portrait: a greeting bubble pops up on hover (tap toggles it on touch).
