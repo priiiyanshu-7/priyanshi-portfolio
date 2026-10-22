@@ -16,6 +16,7 @@
         loader.classList.add('is-done');
         document.documentElement.classList.remove('is-loading');
         loader.addEventListener('transitionend', function () { loader.classList.add('is-hidden'); }, { once: true });
+        setTimeout(function () { loader.classList.add('is-hidden'); }, 1200); // safety net
       }, 2300);
     }
   }
@@ -103,6 +104,7 @@
   var fDesc = document.querySelector('[data-featured-desc]');
   var fYear = document.querySelector('[data-featured-year]');
   var fLink = document.querySelector('[data-featured-link]');
+  var fCover = document.querySelector('[data-featured-cover]');
   var BOOK_PITCH = 84; // horizontal distance between book slots, in px
   var current = document.querySelector('.book.is-raised');
   var defaultBook = current;
@@ -133,6 +135,7 @@
     if (d.desc) fDesc.textContent = d.desc;
     if (d.year) fYear.textContent = d.year;
     if (d.link) fLink.href = d.link;
+    if (d.cover && fCover) { fCover.src = d.cover; fCover.alt = (d.title || 'Project') + ' cover'; }
   }
 
   function select(book) {
