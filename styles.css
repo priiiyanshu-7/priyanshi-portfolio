@@ -1107,8 +1107,7 @@ html.is-loading { overflow: hidden; }
   /* Nav: logo, status pill and a hamburger; the menu drops down below */
   .nav { flex-wrap: nowrap; gap: 10px; padding: 16px 20px 0; position: relative; z-index: 200; }
   /* subpage headers clip their corner glow; let the open menu escape */
-  .about-top, .work-top, .contact-top { overflow: visible; }
-  .about-top, .work-top, .contact-top { position: relative; z-index: 200; }
+  .page > .about-top, .page > .work-top, .page > .contact-top { overflow: visible; position: relative; z-index: 200; }
   .logo { width: 104px; height: 18.2px; }
   .logo img { width: 104.7px; height: 18.9px; }
   .status { padding: 6px 10px; font-size: 12px; margin-left: auto; order: 1; }
