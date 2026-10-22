@@ -12,12 +12,32 @@
     } else {
       document.documentElement.classList.add('is-loading');
       try { sessionStorage.setItem('pc-loader', '1'); } catch (e) {}
-      setTimeout(function () {
+      // Lift the curtain once the intro has played AND the hero images are in
+      // (so nothing pops in afterwards), but never later than the hard cap.
+      var MIN_SHOW = 2300, MAX_SHOW = 7000, start = Date.now(), lifted = false;
+      function lift() {
+        if (lifted) return; lifted = true;
         loader.classList.add('is-done');
         document.documentElement.classList.remove('is-loading');
         loader.addEventListener('transitionend', function () { loader.classList.add('is-hidden'); }, { once: true });
         setTimeout(function () { loader.classList.add('is-hidden'); }, 1200); // safety net
-      }, 2300);
+      }
+      var heroImgs = Array.prototype.slice.call(document.querySelectorAll('.hero img, .nav img, .marquee img'));
+      var waiting = heroImgs.filter(function (im) { return !im.complete; }).length;
+      function imgDone() { waiting--; maybeLift(); }
+      heroImgs.forEach(function (im) {
+        if (im.complete) return;
+        im.addEventListener('load', imgDone, { once: true });
+        im.addEventListener('error', imgDone, { once: true });
+      });
+      function maybeLift() {
+        if (waiting > 0) return;
+        var left = MIN_SHOW - (Date.now() - start);
+        setTimeout(lift, Math.max(0, left));
+      }
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(maybeLift); else maybeLift();
+      maybeLift();
+      setTimeout(lift, MAX_SHOW);
     }
   }
 

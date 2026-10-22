@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://priiiyanshu-7.github.io/priyanshi-portfolio/sitemap.xml
