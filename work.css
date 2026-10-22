@@ -43,7 +43,7 @@
 .wshelf__books { position: absolute; left: 0; top: 0; width: 491px; height: 354px; }
 .wshelf__planks { position: absolute; left: calc(-1 * var(--wall-left, 100px)); bottom: -25px; width: 100vw; transform: none; }
 .shelf-line { left: calc(-1 * var(--wall-left, 100px)); width: 100vw; }
-.wshelf .shelf__panda { left: auto; right: 40px; top: auto; bottom: -25px; }
+.wshelf .shelf__panda { left: auto; right: 40px; top: auto; bottom: 0; z-index: 3; }
 .book--1, .book--2, .book--3, .book--4, .book--5, .book--6 { --i: initial; }
 
 /* ---- featured card, sticky beside the shelves ---- */
@@ -62,7 +62,7 @@
   .wshelf { height: auto; margin-bottom: 56px; display: flex; flex-direction: column; }
   .wshelf__books { position: relative; left: auto; top: auto; zoom: var(--books-zoom); }
   .wshelf__planks { position: relative; left: auto; bottom: auto; width: calc(100% + 40px); margin-left: -20px; transform: none; }
-  .wshelf .shelf__panda { right: 0; bottom: 25px; width: 60px; height: 42px; }
+  .wshelf .shelf__panda { right: 0; bottom: 25px; width: 60px; height: 42px; z-index: 3; }
 }
 @media (prefers-reduced-motion: reduce) {
   .wlamp, .wlamp-light { transition: none; }
