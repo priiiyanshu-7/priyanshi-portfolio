@@ -28,7 +28,7 @@
 .library__panda img { width: 100%; height: 100%; object-fit: cover; animation: panda-breathe 3.4s ease-in-out infinite; transform-origin: 50% 100%; }
 
 /* ---------- Stage & book geometry ---------- */
-:root { --pg-w: 400px; --pg-h: 540px; }
+:root { --pg-w: 340px; --pg-h: 460px; }
 .stage {
   position: relative;
   width: var(--pg-w);
@@ -43,11 +43,12 @@
 /* paper base */
 .paper {
   position: absolute; inset: 0;
+  font-size: 15px;
   background:
     radial-gradient(120% 80% at 0% 50%, rgba(141, 101, 82, .10), transparent 45%),
     #fffaf3;
   color: #2a2222;
-  padding: 44px 40px 40px;
+  padding: 36px 32px 34px;
   overflow: hidden;
   -webkit-backface-visibility: hidden; backface-visibility: hidden;
 }
@@ -107,8 +108,8 @@
 .cover__strip--l { left: 0; width: 12px; background: #ad6671; }
 .cover__strip--r { right: 0; width: 6px; background: #d2acb1; }
 .cover__kicker { position: absolute; top: 26px; left: 0; right: 0; font-size: 12px; letter-spacing: .22em; font-weight: 500; opacity: .9; }
-.cover__logo { width: 150px; filter: brightness(0) invert(1); margin-bottom: 6px; opacity: .95; }
-.cover__title { font-size: 72px; font-weight: 500; line-height: 1; }
+.cover__logo { width: 130px; filter: brightness(0) invert(1); margin-bottom: 6px; opacity: .95; }
+.cover__title { font-size: 62px; font-weight: 500; line-height: 1; }
 .cover__sub { font-size: 18px; font-style: italic; margin-top: 10px; opacity: .92; }
 .cover__year { position: absolute; bottom: 28px; left: 0; right: 0; font-size: 12px; letter-spacing: .14em; opacity: .85; }
 .cover__hint { position: absolute; bottom: 52px; left: 0; right: 0; font-size: 14px; font-style: italic; opacity: 0; animation: hint-pulse 2.6s ease-in-out 1.2s infinite; }
@@ -116,13 +117,13 @@
 @keyframes hint-pulse { 0%, 100% { opacity: 0; } 50% { opacity: .9; } }
 .cover__inside { transform: rotateY(180deg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; }
 .bookplate { font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--peach); font-weight: 500; }
-.bookplate__name { font-size: 34px; font-weight: 500; font-style: italic; }
+.bookplate__name { font-size: 30px; font-weight: 500; font-style: italic; }
 .bookplate__line { font-size: 16px; color: #8d6552; }
 
 /* ---------- Page content ---------- */
 .chapter__kicker { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--peach); font-weight: 500; margin-bottom: 10px; }
-.chapter__title { font-size: 36px; font-weight: 500; line-height: 1.1; margin-bottom: 16px; }
-.chapter__body { font-size: 17.5px; line-height: 1.5; margin-bottom: 12px; }
+.chapter__title { font-size: 31px; font-weight: 500; line-height: 1.1; margin-bottom: 16px; }
+.chapter__body { font-size: 15.5px; line-height: 1.5; margin-bottom: 12px; }
 .chapter__foot { position: absolute; bottom: 20px; right: 28px; font-size: 12px; color: #8d6552; }
 .chapter__foot--left { right: auto; left: 28px; }
 
@@ -132,12 +133,12 @@
 .polaroid { position: absolute; background: #fff; padding: 10px 10px 12px; box-shadow: 0 12px 28px rgba(60,30,30,.16); }
 .polaroid img { display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: 50% 20%; }
 .polaroid__cap { margin-top: 8px; text-align: center; font-size: 13px; font-style: italic; color: var(--rust-dark); }
-.polaroid--main { width: 238px; left: 40px; top: 48px; transform: rotate(-3deg); }
-.polaroid--small { width: 150px; right: 34px; bottom: 54px; transform: rotate(5deg); }
+.polaroid--main { width: 200px; left: 34px; top: 40px; transform: rotate(-3deg); }
+.polaroid--small { width: 128px; right: 28px; bottom: 44px; transform: rotate(5deg); }
 .polaroid--small img { aspect-ratio: 4/3; }
 
-.scrapbook { position: absolute; inset: 36px 32px; }
-.snap { position: absolute; margin: 0; background: #fff; padding: 7px 7px 9px; box-shadow: 0 10px 22px rgba(60,30,30,.15); width: 150px; }
+.scrapbook { position: absolute; inset: 30px 26px; }
+.snap { position: absolute; margin: 0; background: #fff; padding: 7px 7px 9px; box-shadow: 0 10px 22px rgba(60,30,30,.15); width: 128px; }
 .snap img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }
 .snap figcaption { font-size: 12px; font-style: italic; text-align: center; color: var(--rust-dark); margin-top: 6px; }
 .snap--1 { left: 0; top: 0; transform: rotate(-4deg); }
@@ -148,8 +149,8 @@
 .face--photo { padding: 0; }
 .face__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .face__quote {
-  position: absolute; left: 34px; right: 34px; bottom: 76px;
-  color: #fff; font-size: 26px; font-style: italic; line-height: 1.25;
+  position: absolute; left: 28px; right: 28px; bottom: 68px;
+  color: #fff; font-size: 22px; font-style: italic; line-height: 1.25;
   text-shadow: 0 2px 14px rgba(0,0,0,.45);
 }
 .face__quote-by { position: absolute; left: 34px; bottom: 40px; color: #fff; font-size: 13px; opacity: .9; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
@@ -159,19 +160,19 @@
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 18px; border-radius: 16px;
   background: var(--peach-10); border: 1px solid rgba(244,146,113,.25);
-  font-size: 22px; color: var(--rust);
+  font-size: 19px; color: var(--rust);
   transition: transform .3s cubic-bezier(.34,1.56,.64,1), background-color .2s ease;
 }
 .links a:hover { transform: translateX(4px); background: rgba(244,146,113,.22); }
 
 .face--end { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.face__panda { width: 190px; }
+.face__panda { width: 160px; }
 .face__end { font-size: 40px; font-weight: 500; font-style: italic; margin-top: -8px; }
 .face__end-sub { font-size: 15px; color: #8d6552; }
 
 /* chapter tabs on the right fore-edge */
 .tabs {
-  position: absolute; right: -34px; top: 56px;
+  position: absolute; right: -34px; top: 44px;
   display: flex; flex-direction: column; gap: 10px;
   opacity: 0; transform: translateX(-10px);
   transition: opacity .4s ease .9s, transform .5s ease .9s;
@@ -219,7 +220,7 @@
   .cover__title { font-size: 60px; }
   .sheet { position: relative; inset: auto; transform: none !important; display: none; flex-direction: column; gap: 18px; box-shadow: none; transition: none; }
   .library.is-open .sheet { display: flex; }
-  .face { position: relative; inset: auto; transform: none; min-height: 470px; box-shadow: 0 12px 30px rgba(60,30,30,.14); border-radius: 6px; }
+  .face { position: relative; inset: auto; transform: none; min-height: 440px; font-size: 16px; box-shadow: 0 12px 30px rgba(60,30,30,.14); border-radius: 6px; }
   .face--back { padding-bottom: 36px; }
   .chapter__foot { display: none; }
   .polaroid--main { position: relative; left: auto; top: auto; width: 230px; margin: 0 auto; }
