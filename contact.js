@@ -53,10 +53,10 @@
         return;
       }
       form.classList.remove('is-invalid');
-      var name = form.name.value.trim();
-      var email = form.email.value.trim();
+      var name = form.elements.name.value.trim();
+      var email = form.elements.email.value.trim();
       var topic = (form.querySelector('input[name="topic"]:checked') || {}).value || 'a hello';
-      var msg = form.message.value.trim();
+      var msg = form.elements.message.value.trim();
       var subject = 'Postcard from ' + name + ' — about ' + topic;
       var body = 'Dear Priyanshi,\n\n' + msg + '\n\n— ' + name + '\n' + email + '\n\n(sent from the postcard on your portfolio)';
       var href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
@@ -71,7 +71,7 @@
       form.classList.remove('is-sending');
       form.reset();
       if (courier) courier.classList.remove('is-running');
-      form.message.focus();
+      form.elements.message.focus();
     });
   }
 
