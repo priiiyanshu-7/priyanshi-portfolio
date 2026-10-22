@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=202610230231">
-  <link rel="stylesheet" href="work.css?v=202610230250">
+  <link rel="stylesheet" href="styles.css?v=202610230259">
+  <link rel="stylesheet" href="work.css?v=202610230259">
 </head>
 <body class="work-body">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -91,8 +91,8 @@
           <li class="book" data-index="3"
               data-tags="INTERNSHIP · UNDER NDA" data-title="ProCohat Internship"
               data-desc="Product design work from my internship at ProCohat Technologies. It’s under NDA, so I can’t show it here, but I’m happy to walk you through it on a call."
-              data-year="2025" data-link="mailto:priyanshichikhale90@gmail.com?subject=ProCohat%20work%20(under%20NDA)" data-link-label="Contact me" data-cover="assets/covers/procohat.svg" style="--i:3;--edge-l:#a2b08c;--spine:#9baa83;--edge-r:#94a47a">
-            <a href="mailto:priyanshichikhale90@gmail.com?subject=ProCohat%20work%20(under%20NDA)" class="book__inner">
+              data-year="2025" data-link="#nda" data-link-label="Contact me" data-cover="assets/covers/procohat.svg" style="--i:3;--edge-l:#a2b08c;--spine:#9baa83;--edge-r:#94a47a">
+            <a href="#nda" class="book__inner">
               <span class="book__edge" style="background:var(--edge-l)"></span>
               <span class="book__spine">
                 <span class="book__num">03</span>
@@ -207,7 +207,7 @@
       </div>
 
       <aside class="work-card">
-        <article class="featured" style="--spine:#a85d68;--edge-l:#ad6671">
+        <article class="featured featured--clickable" data-featured-card style="--spine:#a85d68;--edge-l:#ad6671">
           <span class="featured__strip featured__strip--l" aria-hidden="true"></span>
           <span class="featured__strip featured__strip--r" aria-hidden="true"></span>
           <div class="featured__content" data-featured-content>
@@ -276,6 +276,22 @@
 
   </div>
 
-  <script src="work.js?v=202610230250"></script>
+  <!-- NDA popup: shown when the ProCohat book or its card is clicked -->
+  <div class="nda" data-nda hidden>
+    <div class="nda__backdrop" data-nda-close></div>
+    <div class="nda__box" role="dialog" aria-modal="true" aria-labelledby="nda-title">
+      <button type="button" class="nda__x" data-nda-close aria-label="Close">×</button>
+      <img class="nda__panda" src="assets/panda-shelf.png" alt="" aria-hidden="true">
+      <p class="nda__kicker">Shh, this one’s under NDA</p>
+      <h3 class="nda__title" id="nda-title">I can’t post the ProCohat work here</h3>
+      <p class="nda__body">It’s real product design from my internship, but it belongs to a client. I’m happy to walk you through it one-on-one. Just ask.</p>
+      <div class="nda__actions">
+        <a class="pill nda__primary" href="contact.html">Send me a postcard <svg class="icon icon--chevron"><use href="#i-chevron"/></svg></a>
+        <a class="pill" href="mailto:priyanshichikhale90@gmail.com?subject=ProCohat%20work%20(under%20NDA)">Email instead</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="work.js?v=202610230259"></script>
 </body>
 </html>

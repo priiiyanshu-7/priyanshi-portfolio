@@ -23,6 +23,21 @@
   var top = document.querySelector('[data-back-to-top]');
   if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
+
+  // NDA popup for the ProCohat book.
+  var nda = document.querySelector('[data-nda]');
+  function openNda() {
+    if (!nda) return;
+    nda.hidden = false;
+    var first = nda.querySelector('.nda__primary'); if (first) first.focus();
+  }
+  function closeNda() { if (nda) nda.hidden = true; }
+  if (nda) {
+    nda.querySelectorAll('[data-nda-close]').forEach(function (el) { el.addEventListener('click', closeNda); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNda(); });
+  }
+  function isNda(link) { return !link || link.charAt(0) === '#' || link.indexOf('mailto:') === 0; }
+
   // ---- Shelves: hover/tap a book to lift it, move the lamp, and fill the card ----
   var wall = document.querySelector('.shelf-wall');
   var books = Array.prototype.slice.call(document.querySelectorAll('.book'));
@@ -54,10 +69,11 @@
     if (d.desc) fDesc.textContent = d.desc;
     if (d.year) fYear.textContent = d.year;
     if (d.link) {
-      fLink.href = d.link;
+      fLink.href = isNda(d.link) ? '#nda' : d.link;
       var isMail = d.link.indexOf('mailto:') === 0;
       if (isMail) { fLink.removeAttribute('target'); fLink.removeAttribute('rel'); }
       else { fLink.setAttribute('target', '_blank'); fLink.setAttribute('rel', 'noopener'); }
+      fLink.onclick = isNda(d.link) ? function (e) { e.preventDefault(); openNda(); } : null;
       var lbl = fLink.querySelector('[data-featured-link-label]');
       if (lbl) lbl.textContent = d.linkLabel || 'Behance';
     }
@@ -81,9 +97,8 @@
       b.addEventListener('mouseenter', function () { select(b); });
       b.addEventListener('focusin', function () { select(b); });
       b.addEventListener('click', function (e) {
-        // First tap on a phone selects; a second tap (already selected) follows the link.
-        if (window.innerWidth < 900 && b !== current) e.preventDefault();
-        select(b);
+        if (isNda(b.dataset.link)) { e.preventDefault(); select(b); openNda(); return; }
+        select(b); // the link itself opens Behance in a new tab
       });
     });
     // Land on a specific book when arriving from the home shelf (#book-03).
@@ -95,6 +110,14 @@
     }
     current = null; select(start);
     fillCard(start);
+    // Clicking anywhere on the big card opens the project (or the NDA note).
+    var card = document.querySelector('[data-featured-card]');
+    if (card) card.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return; // the Behance link handles itself
+      var link = current && current.dataset.link;
+      if (isNda(link)) openNda();
+      else if (link) window.open(link, '_blank', 'noopener');
+    });
   }
 
   // Shelf panda: same little guy as on the home page.

@@ -93,6 +93,21 @@
     });
   }
 
+
+  // NDA popup for the ProCohat book.
+  var nda = document.querySelector('[data-nda]');
+  function openNda() {
+    if (!nda) return;
+    nda.hidden = false;
+    var first = nda.querySelector('.nda__primary'); if (first) first.focus();
+  }
+  function closeNda() { if (nda) nda.hidden = true; }
+  if (nda) {
+    nda.querySelectorAll('[data-nda-close]').forEach(function (el) { el.addEventListener('click', closeNda); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNda(); });
+  }
+  function isNda(link) { return !link || link.charAt(0) === '#' || link.indexOf('mailto:') === 0; }
+
   // Bookshelf: the hovered/focused book lifts, the lamp slides over it, and
   // the featured card takes that book's colours and copy.
   var shelf = document.querySelector('.shelf');
@@ -136,10 +151,11 @@
     if (d.desc) fDesc.textContent = d.desc;
     if (d.year) fYear.textContent = d.year;
     if (d.link) {
-      fLink.href = d.link;
+      fLink.href = isNda(d.link) ? '#nda' : d.link;
       var isMail = d.link.indexOf('mailto:') === 0;
       if (isMail) { fLink.removeAttribute('target'); fLink.removeAttribute('rel'); }
       else { fLink.setAttribute('target', '_blank'); fLink.setAttribute('rel', 'noopener'); }
+      fLink.onclick = isNda(d.link) ? function (e) { e.preventDefault(); openNda(); } : null;
       var lbl = fLink.querySelector('[data-featured-link-label]');
       if (lbl) lbl.textContent = d.linkLabel || 'Behance';
     }
@@ -169,10 +185,9 @@
       b.addEventListener('focusin', function () { clearTimeout(leaveTimer); select(b); });
       // A tap/click picks the book. Until a book has a real project link, don't follow the '#' placeholder.
       b.addEventListener('click', function (e) {
-        // Phones: first tap picks the book, a second tap opens it on the Work page.
-        if (window.innerWidth < 900 && b !== current) e.preventDefault();
         clearTimeout(leaveTimer);
-        select(b);
+        if (isNda(b.dataset.link)) { e.preventDefault(); select(b); openNda(); return; }
+        select(b); // the link itself opens Behance in a new tab
       });
     });
     // Return to the default book once the pointer leaves the shelf for a moment.
@@ -184,6 +199,14 @@
       if (!booksWrap.contains(e.relatedTarget)) select(defaultBook);
     });
     fillCard(current);
+    // Clicking anywhere on the big card opens the project (or the NDA note).
+    var card = document.querySelector('[data-featured-card]');
+    if (card) card.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return; // the Behance link handles itself
+      var link = current && current.dataset.link;
+      if (isNda(link)) openNda();
+      else if (link) window.open(link, '_blank', 'noopener');
+    });
   }
 
   // Shelf panda: breathes while idle, hops and chats on hover, peeks when a
