@@ -373,7 +373,7 @@ h1, h2, h3 { font-weight: 500; }
 }
 .shelf__plank-top { height: 9px; background: var(--plank-light); }
 .shelf__plank-front { height: 16px; background: var(--plank); }
-.shelf__panda { position: absolute; left: 690px; top: 557px; width: 88px; height: 62px; cursor: pointer; }
+.shelf__panda { position: absolute; left: 606px; top: 557px; width: 88px; height: 62px; cursor: pointer; }
 .shelf__panda img {
   width: 100%; height: 100%; object-fit: cover;
   transform-origin: 50% 100%;
@@ -456,7 +456,7 @@ h1, h2, h3 { font-weight: 500; }
   100% { opacity: 0; transform: translate(var(--hx, 0px), -72px) scale(1.1) rotate(var(--hr, 0deg)); }
 }
 
-.shelf__books { position: absolute; left: 86px; top: 257px; width: 575px; height: 354px; }
+.shelf__books { position: absolute; left: 86px; top: 257px; width: 491px; height: 354px; }
 .book {
   position: absolute;
   top: 0;
@@ -1182,7 +1182,7 @@ html.is-loading { overflow: hidden; }
   /* The page settles with the shelf at the bottom of the screen when you scroll near it */
   html { scroll-snap-type: y proximity; }
   .shelf {
-    --books-zoom: min(1, calc((var(--vw, 400) - 120) / 575));
+    --books-zoom: min(1, calc((var(--vw, 400) - 120) / 491));
     scroll-snap-align: end;
     scroll-margin-bottom: 0;
     width: 100%;
@@ -1195,7 +1195,7 @@ html.is-loading { overflow: hidden; }
   .shelf__books {
     position: relative;
     left: auto; top: auto;
-    width: 575px;
+    width: 491px;
     height: 354px;
     margin-top: calc(28px / var(--books-zoom)); /* 28 real px, since the stage is zoomed */
     order: 2;
