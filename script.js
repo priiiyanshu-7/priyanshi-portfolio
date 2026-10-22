@@ -1,6 +1,25 @@
 (function () {
   'use strict';
 
+  // Loader: play the growing-tulip intro once per session, then lift it away.
+  var loader = document.querySelector('[data-loader]');
+  if (loader) {
+    var seen = false;
+    try { seen = sessionStorage.getItem('pc-loader') === '1'; } catch (e) {}
+    var noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (seen || noMotion) {
+      loader.classList.add('is-hidden');
+    } else {
+      document.documentElement.classList.add('is-loading');
+      try { sessionStorage.setItem('pc-loader', '1'); } catch (e) {}
+      setTimeout(function () {
+        loader.classList.add('is-done');
+        document.documentElement.classList.remove('is-loading');
+        loader.addEventListener('transitionend', function () { loader.classList.add('is-hidden'); }, { once: true });
+      }, 2300);
+    }
+  }
+
   // Responsive scaling: keep --vw up to date for the CSS zoom rules, and
   // correct the hero's viewport-height minimum while the page is scaled.
   function fitViewport() {
@@ -137,6 +156,13 @@
     books.forEach(function (b) {
       b.addEventListener('mouseenter', function () { clearTimeout(leaveTimer); select(b); });
       b.addEventListener('focusin', function () { clearTimeout(leaveTimer); select(b); });
+      // A tap/click picks the book. Until a book has a real project link, don't follow the '#' placeholder.
+      b.addEventListener('click', function (e) {
+        var href = b.querySelector('a') && b.querySelector('a').getAttribute('href');
+        if (!href || href.charAt(0) === '#') e.preventDefault();
+        clearTimeout(leaveTimer);
+        select(b);
+      });
     });
     // Return to the default book once the pointer leaves the shelf for a moment.
     booksWrap.addEventListener('mouseleave', function () {
@@ -239,6 +265,7 @@
   var journeyTrigger = window.innerWidth >= 900 && journeyGround ? journeyGround : journeyEl;
   revealOnScroll(journeyEl, journeyTrigger === journeyEl ? 0.15 : 0, journeyTrigger);
   revealOnScroll(document.querySelector('[data-achievements]'), 0.35); // little achievements
+  revealOnScroll(document.querySelector('[data-about]'), 0.3);          // about
 
   // Hero portrait: a greeting bubble pops up on hover (tap toggles it on touch).
   var heroArt = document.querySelector('[data-hero-art]');
