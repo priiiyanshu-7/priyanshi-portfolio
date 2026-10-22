@@ -142,7 +142,7 @@
 .pin.is-copied .pin__sub { color: var(--ink); font-style: italic; }
 
 /* the footer's headline + cards would repeat the pins above, so this page shows only the garden */
-.contact-body .contact__top { display: none; }
+.contact-body .contact__top, .contact-body .contact__butterfly-2 { display: none; }
 .contact-body .contact { padding-top: 40px; }
 
 /* ---- phones ---- */
