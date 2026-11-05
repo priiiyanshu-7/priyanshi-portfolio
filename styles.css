@@ -1228,11 +1228,14 @@ html.is-loading { overflow: hidden; }
     position: relative;
     left: auto; top: auto;
     width: 491px;
-    height: 354px;
+    height: 280px;
     margin-top: calc(28px / var(--books-zoom)); /* 28 real px, since the stage is zoomed */
     order: 2;
     zoom: var(--books-zoom);
   }
+  /* shorter spines on phones */
+  .shelf__books .book__edge, .shelf__books .book__spine { height: 280px; }
+  .shelf__books .book__title span { font-size: 18px; }
   .shelf__panda {
     position: absolute;
     left: auto; right: 0;
