@@ -1139,9 +1139,13 @@ html.is-loading { overflow: hidden; }
   .page > .about-top, .page > .work-top, .page > .contact-top { overflow: visible; position: relative; z-index: 200; }
   .logo { width: 104px; height: 18.2px; }
   .logo img { width: 104.7px; height: 18.9px; }
-  .status { padding: 6px 10px; font-size: 12px; margin-left: auto; order: 1; gap: 4px; }
-  .status__text { display: none; } /* phones: just the dot + "Bangalore" */
+  .status { padding: 6px 9px; font-size: 11.5px; margin-left: auto; order: 1; gap: 4px; white-space: nowrap; }
+  .status__text { display: inline; }
+  .status__in { display: none; }
+  .status__text::after { content: " ·"; } /* reads "Open to roles · Bangalore" */
   .status__pin { display: none; }
+  .logo { width: 88px; height: 15.4px; }
+  .logo img { width: 88.6px; height: 16px; }
   .nav__toggle { order: 2; }
   .nav__toggle {
     display: flex;
