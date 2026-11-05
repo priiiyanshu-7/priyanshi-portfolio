@@ -206,12 +206,15 @@
       // A tap/click picks the book. Until a book has a real project link, don't follow the '#' placeholder.
       b.addEventListener('click', function (e) {
         clearTimeout(leaveTimer);
+        // Phones: a tap only picks the book and fills the big card; the card opens the link.
+        if (window.innerWidth < 900) { e.preventDefault(); select(b); return; }
         if (isNda(b.dataset.link)) { e.preventDefault(); select(b); openNda(); return; }
         select(b); // the link itself opens Behance in a new tab
       });
     });
     // Return to the default book once the pointer leaves the shelf for a moment.
     booksWrap.addEventListener('mouseleave', function () {
+      if (window.innerWidth < 900) return;
       clearTimeout(leaveTimer);
       leaveTimer = setTimeout(function () { select(defaultBook); }, 600);
     });
