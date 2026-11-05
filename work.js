@@ -7,6 +7,47 @@
   fitViewport();
   window.addEventListener('resize', fitViewport);
 
+
+  // Sticky nav: after scrolling past the header, the nav floats back in on
+  // scroll-up and tucks away on scroll-down, so it never covers what you're reading.
+  (function () {
+    var bar = document.querySelector('.nav');
+    if (!bar) return;
+    var spacer = document.createElement('div');
+    spacer.className = 'nav-spacer';
+    bar.parentNode.insertBefore(spacer, bar);
+    var homeY = bar.offsetTop + bar.offsetHeight; // where the in-flow nav ends
+    var lastY = window.scrollY, floating = false;
+    function update() {
+      var y = window.scrollY;
+      var goingUp = y < lastY - 2, goingDown = y > lastY + 2;
+      if (y <= homeY) {
+        // Back near the top: hand the nav back to the page flow.
+        if (floating) {
+          floating = false;
+          bar.classList.remove('is-floating', 'is-shown');
+          spacer.classList.remove('is-on');
+          spacer.style.height = '';
+        }
+      } else {
+        if (!floating) {
+          floating = true;
+          spacer.style.height = bar.offsetHeight + 'px';
+          spacer.classList.add('is-on');
+          bar.classList.add('is-floating');
+        }
+        if (goingUp) bar.classList.add('is-shown');
+        else if (goingDown && !bar.classList.contains('is-open')) bar.classList.remove('is-shown');
+      }
+      lastY = y;
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', function () {
+      if (!floating) homeY = bar.offsetTop + bar.offsetHeight;
+    });
+    update();
+  })();
+
   // Mobile hamburger.
   var nav = document.querySelector('.nav');
   var navToggle = document.querySelector('[data-nav-toggle]');

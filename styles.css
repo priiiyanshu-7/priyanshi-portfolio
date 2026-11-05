@@ -87,6 +87,29 @@ h1, h2, h3 { font-weight: 500; }
   max-width: 1440px;
   margin: 0 auto;
 }
+/* Once scrolled past, the nav comes back as a compact floating bar whenever you scroll up. */
+.nav.is-floating {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  max-width: none;
+  padding: 10px 100px;
+  background: rgba(250, 247, 240, .88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(244, 146, 113, .22);
+  z-index: 500;
+  transform: translateY(-110%);
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+}
+.nav.is-floating.is-shown { transform: translateY(0); }
+.nav.is-floating .nav__menu { padding: 3px; }
+.nav.is-floating .nav__link { padding: 9px 12px; font-size: 15px; }
+.nav.is-floating .nav__link.is-active { padding: 9px 12px; }
+.nav.is-floating .status { padding: 9px 14px; font-size: 14px; }
+.nav.is-floating .logo { width: 130px; height: 22.7px; }
+.nav.is-floating .logo img { width: 131px; height: 23.6px; }
+.nav-spacer { display: none; }
+.nav-spacer.is-on { display: block; }
 .hero__corner-glow {
   position: absolute;
   left: -263px;
@@ -310,7 +333,7 @@ h1, h2, h3 { font-weight: 500; }
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation: none; }
   .shelf__lamp, .shelf__lamp-light, .featured, .featured__strip, .featured__content, .book { transition: none; }
-  .contact__card, .panda-pupil, .hero__bubble, .hero__portrait, .shelf__panda-bubble { transition: none; }
+  .contact__card, .panda-pupil, .hero__bubble, .hero__portrait, .shelf__panda-bubble, .nav.is-floating { transition: none; }
   .shelf__panda img, .shelf__panda img.is-hop, .shelf__panda img.is-peek, .shelf__panda img.is-wiggle, .shelf__heart { animation: none; }
   .chapter__top, .timeline__track { transition: none; opacity: 1; transform: none; clip-path: none; }
   .hero__tulips, .garden__flower img, .drift, .chapter__plant, .achievements.is-visible .achievement__img { animation: none; }
@@ -1106,6 +1129,10 @@ html.is-loading { overflow: hidden; }
 
   /* Nav: logo, status pill and a hamburger; the menu drops down below */
   .nav { flex-wrap: nowrap; gap: 10px; padding: 16px 20px 0; position: relative; z-index: 200; }
+  .nav.is-floating { padding: 10px 20px; }
+  .nav.is-floating .logo { width: 104px; height: 18.2px; }
+  .nav.is-floating .logo img { width: 104.7px; height: 18.9px; }
+  .nav.is-floating .nav__menu { left: 20px; right: 20px; top: calc(100% + 6px); }
   /* subpage headers clip their corner glow; let the open menu escape */
   .page > .about-top, .page > .work-top, .page > .contact-top { overflow: visible; position: relative; z-index: 200; }
   .logo { width: 104px; height: 18.2px; }
