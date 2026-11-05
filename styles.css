@@ -600,7 +600,7 @@ h1, h2, h3 { font-weight: 500; }
 }
 .timeline__track {
   position: absolute;
-  top: 19px;
+  top: 19px; /* label row; cards below are bottom-aligned so this stays level */
   left: 332px;          /* centre of the first card */
   width: 776px;         /* to the centre of the last card */
   height: 1px;
@@ -611,7 +611,7 @@ h1, h2, h3 { font-weight: 500; }
 .journey.is-visible .timeline__track { clip-path: inset(0 0 0 0); }
 .timeline__cards {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 28px;
   padding: 0 100px;
@@ -664,6 +664,8 @@ h1, h2, h3 { font-weight: 500; }
 }
 .chapter__card {
   width: 360px;
+  min-width: 360px;
+  max-width: 360px;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 14px;
@@ -704,7 +706,8 @@ h1, h2, h3 { font-weight: 500; }
 }
 .chapter__logo-img--procohat img { top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
-.chapter__text { display: flex; flex-direction: column; gap: 6px; width: 326px; }
+.chapter__text { display: flex; flex-direction: column; gap: 6px; width: 326px; min-width: 0; }
+.chapter__text p, .chapter__text h3 { overflow-wrap: anywhere; }
 .chapter__name { font-size: 24px; font-weight: 500; width: 100%; }
 .chapter__desc {
   font-family: var(--sans);
