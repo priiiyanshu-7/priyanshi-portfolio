@@ -67,6 +67,8 @@
     links.forEach(function (a) {
       a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
     });
+    var home = document.querySelector('[data-nav-home]');
+    if (home) home.classList.toggle('is-active', id === 'home');
   }
 
   if ('IntersectionObserver' in window && sections.length) {
@@ -77,17 +79,24 @@
       sections.forEach(function (s) {
         if ((visible[s.id] || 0) > bestRatio) { bestRatio = visible[s.id]; best = s.id; }
       });
-      if (window.scrollY < 80) best = sections[0].id;
+      if (window.scrollY < 80) best = 'home';
       if (best) setActive(best);
     }, { rootMargin: '-40% 0px -40% 0px', threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] });
     sections.forEach(function (s) { io.observe(s); });
     window.addEventListener('scroll', function () {
-      if (window.scrollY < 80) setActive(sections[0].id);
+      if (window.scrollY < 80) setActive('home');
     }, { passive: true });
   }
 
   links.forEach(function (a) {
     a.addEventListener('click', function () { setActive(a.getAttribute('href').slice(1)); });
+  });
+  // "Home" scrolls to the top without putting a hash in the address bar.
+  var homeLink = document.querySelector('[data-nav-home]');
+  if (homeLink) homeLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (history.replaceState) history.replaceState(null, '', location.pathname.replace(/index\.html$/, ''));
   });
 
   // Mobile hamburger menu.
