@@ -190,7 +190,13 @@ h1, h2, h3 { font-weight: 500; }
   min-width: 1px;
   display: flex;
   flex-direction: column;
-  gap: 72px;
+  gap: 40px;
+}
+.hero__role {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--rust);
+  margin: -8px 0 -12px;
 }
 .hero__heading { display: flex; flex-direction: column; align-items: flex-start; width: 100%; }
 .hero__greeting { font-size: 44px; width: 100%; }
@@ -596,7 +602,7 @@ h1, h2, h3 { font-weight: 500; }
 .timeline {
   position: relative;
   width: 1440px;
-  height: 600px; /* label 34 + card 392 + plant 158 + plank 16 */
+  height: 624px; /* label 34 + card 416 + plant 158 + plank 16 */
   flex-shrink: 0;
 }
 .timeline__track {
@@ -617,7 +623,7 @@ h1, h2, h3 { font-weight: 500; }
   gap: 28px;
   padding: 0 100px;
   width: 100%;
-  height: 584px;
+  height: 608px;
 }
 .timeline__plank {
   position: absolute;
@@ -667,7 +673,7 @@ h1, h2, h3 { font-weight: 500; }
   width: 360px;
   min-width: 360px;
   max-width: 360px;
-  height: 392px; /* same height for all three; room for a 5-line blurb */
+  height: 416px; /* same height for all three; room for role + 5-line blurb */
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 14px;
@@ -711,6 +717,7 @@ h1, h2, h3 { font-weight: 500; }
 .chapter__text { display: flex; flex-direction: column; gap: 6px; width: 326px; min-width: 0; flex: 1 0 0; }
 .chapter__text p, .chapter__text h3 { overflow-wrap: anywhere; }
 .chapter__name { font-size: 24px; font-weight: 500; width: 100%; }
+.chapter__role { font-family: var(--sans); font-size: 13.5px; font-weight: 500; letter-spacing: .02em; color: var(--rust); margin-top: -2px; }
 .chapter__desc {
   font-family: var(--sans);
   font-weight: 500;
@@ -1198,13 +1205,17 @@ html.is-loading { overflow: hidden; }
   .hero__corner-glow { left: -330px; top: -330px; }
 
   /* Hero: text, then the art */
-  .hero__body { flex-direction: column; align-items: flex-start; justify-content: space-between; padding: 0 20px; }
-  .hero__text { width: 100%; gap: 28px; padding-top: 8px; }
+  .hero__body { flex-direction: column; align-items: flex-start; justify-content: space-between; padding: 0 20px; min-width: 0; max-width: 100%; }
+  .nav { min-width: 0; max-width: 100%; }
+  .status { min-width: 0; flex-shrink: 1; overflow: hidden; text-overflow: ellipsis; }
+  .hero__text { width: 100%; gap: 22px; padding-top: 8px; }
+  .hero__role { font-size: 16px; margin: -4px 0 -6px; }
   .hero__greeting { font-size: clamp(28px, 7vw, 44px); }
   .hero__name { font-size: clamp(56px, 16.5vw, 128px); }
-  .hero__tagline { font-size: clamp(18px, 4.6vw, 24px); }
+  .hero__tagline { font-size: clamp(18px, 4.6vw, 24px); max-width: 100%; }
   .hero__tagline br { display: none; }
-  .hero__brands { flex-wrap: wrap; gap: 4px 2px; zoom: 0.72; } /* logos ~28% smaller so all four fit on one line */
+  /* all four logos on one line: the row is 478px wide at full size, so scale it to the screen */
+  .hero__brands { flex-wrap: nowrap; gap: 2px; zoom: min(0.72, calc((var(--vw, 390) - 40) / 478)); }
   .hero__art {
     flex: none;
     align-self: flex-start;
