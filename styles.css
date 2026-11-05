@@ -600,7 +600,7 @@ h1, h2, h3 { font-weight: 500; }
 }
 .timeline__track {
   position: absolute;
-  top: 19px; /* label row; cards below are bottom-aligned so this stays level */
+  top: 16px; /* runs through the middle of the label pills */
   left: 332px;          /* centre of the first card */
   width: 776px;         /* to the centre of the last card */
   height: 1px;
@@ -611,7 +611,7 @@ h1, h2, h3 { font-weight: 500; }
 .journey.is-visible .timeline__track { clip-path: inset(0 0 0 0); }
 .timeline__cards {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-end; /* label row varies; cards + ground line up */
   justify-content: center;
   gap: 28px;
   padding: 0 100px;
@@ -666,6 +666,7 @@ h1, h2, h3 { font-weight: 500; }
   width: 360px;
   min-width: 360px;
   max-width: 360px;
+  height: 392px; /* same height for all three; room for a 5-line blurb */
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 14px;
@@ -706,7 +707,7 @@ h1, h2, h3 { font-weight: 500; }
 }
 .chapter__logo-img--procohat img { top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
-.chapter__text { display: flex; flex-direction: column; gap: 6px; width: 326px; min-width: 0; }
+.chapter__text { display: flex; flex-direction: column; gap: 6px; width: 326px; min-width: 0; flex: 1 0 0; }
 .chapter__text p, .chapter__text h3 { overflow-wrap: anywhere; }
 .chapter__name { font-size: 24px; font-weight: 500; width: 100%; }
 .chapter__desc {
@@ -1265,7 +1266,8 @@ html.is-loading { overflow: hidden; }
   .timeline__track { display: none; }
   .timeline__cards { flex-direction: column; height: auto; padding: 0; gap: 8px; }
   .chapter { width: 100%; order: calc(4 - var(--order)); } /* newest (Present) first on phones */
-  .chapter__card, .chapter__logo, .chapter__text { width: 100%; }
+  .chapter__card, .chapter__logo, .chapter__text { width: 100%; min-width: 0; max-width: none; }
+  .chapter__card { height: auto; }
   .chapter__plant { display: none; } /* no plants between stacked cards on phones */
   .timeline__cards { gap: 28px; }
   .timeline__plank { margin-top: 36px; }
