@@ -8,8 +8,7 @@
   window.addEventListener('resize', fitViewport);
 
 
-  // Sticky nav: after scrolling past the header, the nav floats back in on
-  // scroll-up and tucks away on scroll-down, so it never covers what you're reading.
+  // Sticky nav: after scrolling past the header, the nav floats as a compact bar at the top.
   (function () {
     var bar = document.querySelector('.nav');
     if (!bar) return;
@@ -20,7 +19,6 @@
     var lastY = window.scrollY, floating = false;
     function update() {
       var y = window.scrollY;
-      var goingUp = y < lastY - 2, goingDown = y > lastY + 2;
       if (y <= homeY) {
         // Back near the top: hand the nav back to the page flow.
         if (floating) {
@@ -36,8 +34,7 @@
           spacer.classList.add('is-on');
           bar.classList.add('is-floating');
         }
-        if (goingUp) bar.classList.add('is-shown');
-        else if (goingDown && !bar.classList.contains('is-open')) bar.classList.remove('is-shown');
+        bar.classList.add('is-shown'); // stays visible while scrolled
       }
       lastY = y;
     }
