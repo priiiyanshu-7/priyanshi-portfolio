@@ -1235,7 +1235,7 @@ html.is-loading { overflow: hidden; }
   }
   /* shorter spines on phones */
   .shelf__books .book__edge, .shelf__books .book__spine { height: 280px; }
-  .shelf__books .book__title span { font-size: 18px; }
+  .shelf__books .book__title span { font-size: 15px; line-height: 22px; }
   .shelf__panda {
     position: absolute;
     left: auto; right: 0;
