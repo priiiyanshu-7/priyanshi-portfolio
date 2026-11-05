@@ -1137,7 +1137,9 @@ html.is-loading { overflow: hidden; }
   .page > .about-top, .page > .work-top, .page > .contact-top { overflow: visible; position: relative; z-index: 200; }
   .logo { width: 104px; height: 18.2px; }
   .logo img { width: 104.7px; height: 18.9px; }
-  .status { padding: 6px 10px; font-size: 12px; margin-left: auto; order: 1; }
+  .status { padding: 6px 10px; font-size: 12px; margin-left: auto; order: 1; gap: 4px; }
+  .status__text { display: none; } /* phones: just the dot + "Bangalore" */
+  .status__pin { display: none; }
   .nav__toggle { order: 2; }
   .nav__toggle {
     display: flex;
