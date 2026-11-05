@@ -152,6 +152,19 @@
     window.addEventListener('resize', function () { if (window.innerWidth >= 900) setMenu(false); });
   }
 
+
+  // Same-page anchor links scroll smoothly (script fallback for browsers that ignore the CSS).
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a || a.getAttribute('href').length < 2) return;
+    var target = document.getElementById(a.getAttribute('href').slice(1));
+    if (!target) return;
+    e.preventDefault();
+    var top = target.getBoundingClientRect().top + window.scrollY - 72;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    if (history.pushState) history.pushState(null, '', a.getAttribute('href'));
+  });
+
   // Back to top.
   var top = document.querySelector('[data-back-to-top]');
   if (top) {

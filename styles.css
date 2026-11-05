@@ -17,6 +17,8 @@
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+/* anchored sections stop just below the floating nav bar */
+[id] { scroll-margin-top: 72px; }
 body {
   background: var(--bg);
   color: #000;
@@ -1211,12 +1213,8 @@ html.is-loading { overflow: hidden; }
   .section__title { font-size: clamp(30px, 8vw, 40px); white-space: normal; }
 
   /* Bookshelf: books on a plank, featured card below */
-  /* The page settles with the shelf at the bottom of the screen when you scroll near it */
-  html { scroll-snap-type: y proximity; }
   .shelf {
     --books-zoom: min(1, calc((var(--vw, 400) - 120) / 491));
-    scroll-snap-align: end;
-    scroll-margin-bottom: 0;
     width: 100%;
     height: auto;
     display: flex;
