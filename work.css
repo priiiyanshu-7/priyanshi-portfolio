@@ -40,10 +40,10 @@
 
 .wshelf { position: relative; height: 354px; margin-bottom: 110px; }
 .wshelf:last-child { margin-bottom: 0; }
-.wshelf__books { position: absolute; left: 0; top: 0; width: 756px; height: 354px; }
+.wshelf__books { position: absolute; left: 0; top: 0; width: 672px; height: 354px; }
 .wshelf__planks { position: absolute; left: calc(-1 * var(--wall-left, 100px)); bottom: -25px; width: 100vw; transform: none; }
 .shelf-line { left: calc(-1 * var(--wall-left, 100px)); width: 100vw; }
-.wshelf .shelf__panda { left: 770px; right: auto; top: auto; bottom: 0; z-index: 3; }
+.wshelf .shelf__panda { left: 686px; right: auto; top: auto; bottom: 0; z-index: 3; }
 .book--1, .book--2, .book--3, .book--4, .book--5, .book--6 { --i: initial; }
 
 /* ---- featured card, sticky beside the shelves ---- */

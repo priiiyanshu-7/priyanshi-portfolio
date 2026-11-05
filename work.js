@@ -24,18 +24,6 @@
   if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
 
-  // NDA popup for the ProCohat book.
-  var nda = document.querySelector('[data-nda]');
-  function openNda() {
-    if (!nda) return;
-    nda.hidden = false;
-    var first = nda.querySelector('.nda__primary'); if (first) first.focus();
-  }
-  function closeNda() { if (nda) nda.hidden = true; }
-  if (nda) {
-    nda.querySelectorAll('[data-nda-close]').forEach(function (el) { el.addEventListener('click', closeNda); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNda(); });
-  }
   function isNda(link) { return !link || link.charAt(0) === '#' || link.indexOf('mailto:') === 0; }
 
   // ---- Shelves: hover/tap a book to lift it, move the lamp, and fill the card ----
@@ -73,7 +61,7 @@
       var isMail = d.link.indexOf('mailto:') === 0;
       if (isMail) { fLink.removeAttribute('target'); fLink.removeAttribute('rel'); }
       else { fLink.setAttribute('target', '_blank'); fLink.setAttribute('rel', 'noopener'); }
-      fLink.onclick = isNda(d.link) ? function (e) { e.preventDefault(); openNda(); } : null;
+      fLink.onclick = null;
       var lbl = fLink.querySelector('[data-featured-link-label]');
       if (lbl) lbl.textContent = d.linkLabel || 'Behance';
     }
@@ -97,7 +85,7 @@
       b.addEventListener('mouseenter', function () { select(b); });
       b.addEventListener('focusin', function () { select(b); });
       b.addEventListener('click', function (e) {
-        if (isNda(b.dataset.link)) { e.preventDefault(); select(b); openNda(); return; }
+        if (isNda(b.dataset.link)) { e.preventDefault(); select(b); return; }
         select(b); // the link itself opens Behance in a new tab
       });
     });
@@ -115,15 +103,9 @@
     if (card) card.addEventListener('click', function (e) {
       if (e.target.closest('a')) return; // the Behance link handles itself
       var link = current && current.dataset.link;
-      if (isNda(link)) openNda();
-      else if (link) window.open(link, '_blank', 'noopener');
+      if (!isNda(link)) window.open(link, '_blank', 'noopener');
     });
   }
-
-  // Phone cover cards: the NDA one opens the popup.
-  document.querySelectorAll('.mcard--nda').forEach(function (a) {
-    a.addEventListener('click', function (e) { e.preventDefault(); openNda(); });
-  });
 
   // Shelf panda: same little guy as on the home page.
   var shelfPanda = document.querySelector('[data-shelf-panda]');

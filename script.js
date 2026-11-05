@@ -114,18 +114,6 @@
   }
 
 
-  // NDA popup for the ProCohat book.
-  var nda = document.querySelector('[data-nda]');
-  function openNda() {
-    if (!nda) return;
-    nda.hidden = false;
-    var first = nda.querySelector('.nda__primary'); if (first) first.focus();
-  }
-  function closeNda() { if (nda) nda.hidden = true; }
-  if (nda) {
-    nda.querySelectorAll('[data-nda-close]').forEach(function (el) { el.addEventListener('click', closeNda); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNda(); });
-  }
   function isNda(link) { return !link || link.charAt(0) === '#' || link.indexOf('mailto:') === 0; }
 
   // Bookshelf: the hovered/focused book lifts, the lamp slides over it, and
@@ -175,7 +163,7 @@
       var isMail = d.link.indexOf('mailto:') === 0;
       if (isMail) { fLink.removeAttribute('target'); fLink.removeAttribute('rel'); }
       else { fLink.setAttribute('target', '_blank'); fLink.setAttribute('rel', 'noopener'); }
-      fLink.onclick = isNda(d.link) ? function (e) { e.preventDefault(); openNda(); } : null;
+      fLink.onclick = null;
       var lbl = fLink.querySelector('[data-featured-link-label]');
       if (lbl) lbl.textContent = d.linkLabel || 'Behance';
     }
@@ -208,7 +196,7 @@
         clearTimeout(leaveTimer);
         // Phones: a tap only picks the book and fills the big card; the card opens the link.
         if (window.innerWidth < 900) { e.preventDefault(); select(b); return; }
-        if (isNda(b.dataset.link)) { e.preventDefault(); select(b); openNda(); return; }
+        if (isNda(b.dataset.link)) { e.preventDefault(); select(b); return; }
         select(b); // the link itself opens Behance in a new tab
       });
     });
@@ -227,8 +215,7 @@
     if (card) card.addEventListener('click', function (e) {
       if (e.target.closest('a')) return; // the Behance link handles itself
       var link = current && current.dataset.link;
-      if (isNda(link)) openNda();
-      else if (link) window.open(link, '_blank', 'noopener');
+      if (!isNda(link)) window.open(link, '_blank', 'noopener');
     });
   }
 
