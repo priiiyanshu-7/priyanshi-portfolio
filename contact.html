@@ -89,8 +89,8 @@
 
     <section class="post" aria-label="Write a postcard">
       <div class="post__desk">
-        <!-- Set data-endpoint to your Formspree form URL (https://formspree.io/f/XXXXXXXX) to store postcards. Until then it opens the mail app. -->
-        <form class="postcard" data-postcard data-endpoint="" novalidate>
+        <!-- Postcards are posted to Formspree (data-endpoint); if that fails the mail app opens as a fallback. -->
+        <form class="postcard" data-postcard data-endpoint="https://formspree.io/f/mdeebjlj" novalidate>
           <div class="postcard__left">
             <p class="postcard__hint">Hey Priyanshi,</p>
             <textarea class="postcard__msg" name="message" rows="7" spellcheck="false" placeholder="I’ve got a role / a project / a question about…" required aria-label="Your message"></textarea>
