@@ -190,7 +190,13 @@ h1, h2, h3 { font-weight: 500; }
   min-width: 1px;
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 40px;
+}
+.hero__role {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--rust);
+  margin: -8px 0 -12px;
 }
 .hero__heading { display: flex; flex-direction: column; align-items: flex-start; width: 100%; }
 .hero__greeting { font-size: 44px; width: 100%; }
@@ -1203,6 +1209,7 @@ html.is-loading { overflow: hidden; }
   .nav { min-width: 0; max-width: 100%; }
   .status { min-width: 0; flex-shrink: 1; overflow: hidden; text-overflow: ellipsis; }
   .hero__text { width: 100%; gap: 22px; padding-top: 8px; }
+  .hero__role { font-size: 16px; margin: -4px 0 -6px; }
   .hero__greeting { font-size: clamp(28px, 7vw, 44px); }
   .hero__name { font-size: clamp(56px, 16.5vw, 128px); }
   .hero__tagline { font-size: clamp(18px, 4.6vw, 24px); max-width: 100%; }
